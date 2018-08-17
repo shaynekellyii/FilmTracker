@@ -1,5 +1,6 @@
 package com.shaynek.filmtracker.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -7,13 +8,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.shaynek.filmtracker.FilmApp
 import com.shaynek.filmtracker.R
 import com.shaynek.filmtracker.data.Roll
+import com.shaynek.filmtracker.data.RollDao
 import com.shaynek.filmtracker.snack
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_add_roll.*
+import javax.inject.Inject
 
 class AddRollActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var dao: RollDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +33,10 @@ class AddRollActivity : AppCompatActivity() {
         add_roll_fab.setOnClickListener {
             if (validateData()) {
                 addRoll()
+                setResult(Activity.RESULT_OK, Intent())
                 finish()
             } else {
-                it.snack("Please fill out all of the information", f = {})
+                it.snack("Please fill out all of the information")
             }
         }
     }
@@ -52,10 +59,5 @@ class AddRollActivity : AppCompatActivity() {
     private fun addRoll() {
         val roll = Roll(0, add_brand.text.toString(), add_type.text.toString(),
                 add_iso.toString(), add_colour_radio.isChecked)
-
-        Single.fromCallable {
-            FilmApp.database?.rollDao()?.insert(roll)
-        }.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe()
     }
 }
