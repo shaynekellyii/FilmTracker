@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Film Tracker</string>
+    <string name="film_rolls">Film rolls</string>
+    <string name="add_film_roll">Add film roll</string>
+    <string name="film_brand">Film brand</string>
+    <string name="film_type">Film type</string>
+    <string name="iso">ISO</string>
+    <string name="black_white">Black + white</string>
+    <string name="colour">Colour</string>
+</resources>
