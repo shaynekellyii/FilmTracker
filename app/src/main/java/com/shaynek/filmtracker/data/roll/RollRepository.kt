@@ -1,15 +1,11 @@
-package com.shaynek.filmtracker.data
+package com.shaynek.filmtracker.data.roll
 
 import androidx.lifecycle.LiveData
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
-class RollRepository() {
-
-    @Inject
-    private lateinit var rollDao: RollDao
+class RollRepository(private val rollDao: RollDao) {
 
     private var allRolls = rollDao.getAllRolls()
 

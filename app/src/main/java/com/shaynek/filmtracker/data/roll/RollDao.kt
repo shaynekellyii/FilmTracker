@@ -1,10 +1,9 @@
-package com.shaynek.filmtracker.data
+package com.shaynek.filmtracker.data.roll
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import io.reactivex.Flowable
 
 @Dao
 interface RollDao {
