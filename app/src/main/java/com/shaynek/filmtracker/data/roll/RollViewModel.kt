@@ -11,4 +11,11 @@ class RollViewModel(repository: RollRepository) : ViewModel() {
     fun getAllRolls(): LiveData<List<Roll>> = allRolls
 
     fun insertRoll(roll: Roll) = rollRepository.insertRoll(roll)
+
+    fun deleteAllRolls() = rollRepository.deleteAllRolls()
+
+    override fun onCleared() {
+        rollRepository.onCleared()
+        super.onCleared()
+    }
 }

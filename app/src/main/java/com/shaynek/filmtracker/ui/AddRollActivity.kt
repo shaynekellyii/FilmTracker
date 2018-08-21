@@ -22,8 +22,10 @@ class AddRollActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_roll)
 
         setSupportActionBar(add_roll_toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = ""
+        supportActionBar?.let {
+            it.setDisplayHomeAsUpEnabled(true)
+            it.title = ""
+        }
 
         add_bw_radio.isChecked = true
         add_roll_fab.setOnClickListener {
