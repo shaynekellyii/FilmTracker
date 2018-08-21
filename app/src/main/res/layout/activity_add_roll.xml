@@ -26,20 +26,28 @@
                 android:text="@string/add_film_roll" />
         </androidx.appcompat.widget.Toolbar>
 
-        <EditText
-            android:id="@+id/add_brand"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_brand_wrapper"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:hint="@string/film_brand"
-            android:inputType="text"
-            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintBottom_toTopOf="@id/add_type"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_roll_toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/add_roll_toolbar"
+            app:layout_constraintVertical_chainStyle="packed">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_brand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:hint="@string/film_brand"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/add_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -49,19 +57,31 @@
             app:layout_constraintBottom_toTopOf="@id/add_iso"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_brand" />
+            app:layout_constraintTop_toBottomOf="@id/add_brand_wrapper" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/add_iso"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:hint="@string/iso"
             android:inputType="number"
-            app:layout_constraintBottom_toTopOf="@id/add_radiogroup"
+            app:layout_constraintBottom_toTopOf="@id/add_exp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_type" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_exp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/exposures"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@id/add_radiogroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_iso" />
 
         <RadioGroup
             android:id="@+id/add_radiogroup"
@@ -71,7 +91,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_iso">
+            app:layout_constraintTop_toBottomOf="@id/add_exp">
 
             <RadioButton
                 android:id="@+id/add_bw_radio"

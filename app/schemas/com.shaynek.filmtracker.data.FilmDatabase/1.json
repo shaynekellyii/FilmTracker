@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b1c3f060c19946ba39330d4ecd6f2324",
+    "identityHash": "a21da41ce87dd7baae88ec2582466ee0",
     "entities": [
       {
         "tableName": "roll",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `brand` TEXT NOT NULL, `type` TEXT NOT NULL, `iso` TEXT NOT NULL, `colour` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `brand` TEXT NOT NULL, `type` TEXT NOT NULL, `iso` TEXT NOT NULL, `exp` TEXT NOT NULL, `colour` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -33,6 +33,12 @@
             "notNull": true
           },
           {
+            "fieldPath": "exp",
+            "columnName": "exp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "colour",
             "columnName": "colour",
             "affinity": "INTEGER",
@@ -51,7 +57,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"b1c3f060c19946ba39330d4ecd6f2324\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a21da41ce87dd7baae88ec2582466ee0\")"
     ]
   }
 }

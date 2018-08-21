@@ -8,4 +8,7 @@
     <string name="black_white">Black + white</string>
     <string name="colour">Colour</string>
     <string name="clear_all_data">Clear all data</string>
+    <string name="roll_item_title">%1$s %2$s</string>
+    <string name="roll_item_details">%1$s, ISO %2$s, %3$s exp</string>
+    <string name="exposures">Exposures</string>
 </resources>

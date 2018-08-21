@@ -32,7 +32,7 @@ class AddRollActivity : AppCompatActivity() {
             if (validateData()) {
                 val intent = Intent()
                 intent.putExtra(TAG, Roll(0, add_brand.text.toString(), add_type.text.toString(),
-                        add_iso.text.toString(), add_colour_radio.isChecked))
+                        add_iso.text.toString(), add_exp.text.toString(), add_colour_radio.isChecked))
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             } else {
@@ -51,8 +51,8 @@ class AddRollActivity : AppCompatActivity() {
             }
 
     private fun validateData(): Boolean {
-        return add_brand.text != null && !add_brand.text.isEmpty()
-                && add_type.text != null && !add_type.text.isEmpty()
-                && add_iso.text != null && !add_iso.text.isEmpty()
+        return add_brand.text != null && !add_brand.text.toString().isEmpty()
+                && add_type.text != null && !add_type.text.toString().isEmpty()
+                && add_iso.text != null && !add_iso.text.toString().isEmpty()
     }
 }

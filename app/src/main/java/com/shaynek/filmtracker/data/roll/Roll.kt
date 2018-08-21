@@ -13,4 +13,5 @@ data class Roll(
         var brand: String = "",
         var type: String = "",
         var iso: String = "",
+        var exp: String = "",
         var colour: Boolean = false) : Parcelable

@@ -3,15 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="16dp"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/roll_item_type"
+        android:id="@+id/roll_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:textSize="24sp"
+        android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Kodak UltraMax"/>
+
+    <TextView
+        android:id="@+id/roll_item_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roll_item_name"
+        tools:text="Colour, ISO 400, 24 exp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

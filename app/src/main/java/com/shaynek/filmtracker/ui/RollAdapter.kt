@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shaynek.filmtracker.R
-import com.shaynek.filmtracker.R.id.roll_item_type
 import com.shaynek.filmtracker.data.roll.Roll
 import kotlinx.android.synthetic.main.roll_recyclerview_item.view.*
 
@@ -22,10 +21,7 @@ class RollAdapter(context: Context) : RecyclerView.Adapter<RollAdapter.RollViewH
 
     override fun onBindViewHolder(holder: RollViewHolder, position: Int) {
         if (::cache.isInitialized) {
-            val roll = cache.get(position)
-            holder.bind(roll.type)
-        } else {
-            holder.bind("Type not set")
+            holder.bind(cache.get(position))
         }
     }
 
@@ -37,10 +33,15 @@ class RollAdapter(context: Context) : RecyclerView.Adapter<RollAdapter.RollViewH
     }
 
     class RollViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val rollTypeView: TextView = view.roll_item_type
+        private val rollNameView: TextView = view.roll_item_name
+        private val rollDetailsView: TextView = view.roll_item_details
 
-        fun bind(rollType: String) {
-            rollTypeView.text = rollType
+        fun bind(roll: Roll) {
+            val context = rollNameView.context
+            rollNameView.text = context.getString(R.string.roll_item_title, roll.brand, roll.type)
+            rollDetailsView.text = context.getString(R.string.roll_item_details,
+                    if (roll.colour) context.getString(R.string.colour) else context.getString(R.string.black_white),
+                    roll.iso, roll.exp)
         }
     }
 }
