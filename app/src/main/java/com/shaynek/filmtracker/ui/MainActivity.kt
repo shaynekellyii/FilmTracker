@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity() {
 
     private val REQ_CODE = 1111
 
-    private val rollViewModel: RollViewModel by inject()
-    private lateinit var adapter: RollAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,13 +26,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(main_toolbar)
         supportActionBar?.title = ""
 
-        adapter = RollAdapter(this)
-        roll_recyclerview.adapter = adapter
-        roll_recyclerview.layoutManager = LinearLayoutManager(this)
-
-        rollViewModel.getAllRolls().observe(this, Observer {
-            adapter.setCache(it)
-        })
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.main_fragment_frame, RollListFragment.newInstance())
+                .commit()
 
         roll_fab.setOnClickListener {
             startActivityForResult(Intent(this, AddRollActivity::class.java), REQ_CODE)
@@ -48,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 if (resultCode == Activity.RESULT_OK) {
                     val roll = data?.getParcelableExtra<Roll>(AddRollActivity.TAG)
                     roll?.let {
-                        rollViewModel.insertRoll(it)
+//                        rollViewModel.insertRoll(it)
                         roll_fab.snack("Added new roll")
                     } ?: roll_fab.snack("Failed to add new roll")
                 }
@@ -64,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.action_clear_data -> rollViewModel.deleteAllRolls()
+//            R.id.action_clear_data -> rollViewModel.deleteAllRolls()
         }
         return super.onOptionsItemSelected(item)
     }

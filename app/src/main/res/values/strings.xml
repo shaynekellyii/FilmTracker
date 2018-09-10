@@ -11,4 +11,8 @@
     <string name="roll_item_title">%1$s %2$s</string>
     <string name="roll_item_details">%1$s, ISO %2$s, %3$s exp</string>
     <string name="exposures">Exposures</string>
+    <string name="add_new_shot">Add new shot</string>
+    <string name="roll">Roll</string>
+    <string name="shutter_speed">Shutter speed</string>
+    <string name="aperture_value">Aperture value</string>
 </resources>
