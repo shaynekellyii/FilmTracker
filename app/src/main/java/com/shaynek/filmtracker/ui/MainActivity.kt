@@ -6,14 +6,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.shaynek.filmtracker.R
 import com.shaynek.filmtracker.data.roll.Roll
-import com.shaynek.filmtracker.data.roll.RollViewModel
 import com.shaynek.filmtracker.snack
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,28 +26,24 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(main_toolbar)
         supportActionBar?.title = ""
 
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.main_fragment_frame, RollListFragment.newInstance())
-                .commit()
-
-        roll_fab.setOnClickListener {
-            startActivityForResult(Intent(this, AddRollActivity::class.java), REQ_CODE)
-        }
+        val navController = findNavController(R.id.nav_host_fragment)
+        Navigation.setViewNavController(roll_fab, navController)
+        roll_fab.setOnClickListener { navController.navigate(R.id.action_rollListFragment_to_addRollFragment) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
-            REQ_CODE -> {
-                if (resultCode == Activity.RESULT_OK) {
-                    val roll = data?.getParcelableExtra<Roll>(AddRollActivity.TAG)
-                    roll?.let {
-//                        rollViewModel.insertRoll(it)
-                        roll_fab.snack("Added new roll")
-                    } ?: roll_fab.snack("Failed to add new roll")
-                }
-            }
-            else -> super.onActivityResult(requestCode, resultCode, data)
-        }
+//        when (requestCode) {
+//            REQ_CODE -> {
+//                if (resultCode == Activity.RESULT_OK) {
+//                    val roll = data?.getParcelableExtra<Roll>(AddRollActivity.TAG)
+//                    roll?.let {
+////                        rollViewModel.insertRoll(it)
+//                        roll_fab.snack("Added new roll")
+//                    } ?: roll_fab.snack("Failed to add new roll")
+//                }
+//            }
+//            else -> super.onActivityResult(requestCode, resultCode, data)
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -61,4 +57,6 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onSupportNavigateUp(): Boolean = findNavController(R.id.nav_host_fragment).navigateUp()
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/rollListFragment">
+
+    <fragment
+        android:id="@+id/addRollFragment"
+        android:name="com.shaynek.filmtracker.ui.AddRollFragment"
+        android:label="AddRollFragment" />
+    <fragment
+        android:id="@+id/rollListFragment"
+        android:name="com.shaynek.filmtracker.ui.RollListFragment"
+        android:label="RollListFragment" >
+        <action
+            android:id="@+id/action_rollListFragment_to_addRollFragment"
+            app:destination="@id/addRollFragment" />
+    </fragment>
+</navigation>

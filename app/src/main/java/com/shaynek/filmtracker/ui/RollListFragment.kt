@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.shaynek.filmtracker.R
 import com.shaynek.filmtracker.data.roll.RollViewModel
@@ -14,12 +16,12 @@ import org.koin.android.ext.android.inject
 
 class RollListFragment : Fragment() {
 
+    private val rollViewModel: RollViewModel by inject()
+    private lateinit var adapter: RollAdapter
+
     companion object {
         fun newInstance(): RollListFragment = RollListFragment()
     }
-
-    private val rollViewModel: RollViewModel by inject()
-    private lateinit var adapter: RollAdapter
 
     fun RollListFragment() {
         // Required empty constructor.
